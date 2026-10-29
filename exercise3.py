@@ -1,5 +1,5 @@
-
 import turtle
+
 
 def draw_square(i, j, t, side=10, col="black"):
     x = -150 + j * side
@@ -17,27 +17,28 @@ def draw_square(i, j, t, side=10, col="black"):
     t.penup()
 
 
-# Read the first line from the file
-file = open("pattern.txt")
-line = file.readline()
-file.close()
+# read the line from the text file
+f = open("pattern.txt", "r")
+line = f.readline().rstrip("\n")
+f.close()
 
+# convert '#' -> 1, ' ' -> 0
 my_list = []
-
-# TODO: Iterate over the characters in line.
-# Append 1 for each '#' and 0 for each space.
-# Ignore any newline character.
-
+for ch in line:
+    if ch == "#":
+        my_list.append(1)
+    elif ch == " ":
+        my_list.append(0)
 
 print(my_list)
 
+# draw the pattern
 t = turtle.Turtle()
-t.speed(10)
+t.speed(0)
 t.hideturtle()
 
-# TODO: Iterate over the indices of my_list.
-# Draw a black square at row 0, column j
-# whenever my_list[j] is 1.
-
+for j in range(len(my_list)):
+    if my_list[j] == 1:
+        draw_square(0, j, t, 10, "black")
 
 turtle.done()
